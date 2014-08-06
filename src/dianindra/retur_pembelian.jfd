@@ -1,0 +1,344 @@
+JFDML JFormDesigner: "5.1.2.0.134" Java: "1.6.0_20" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {comp panel3::::0:x, seq {space :0:0:x, comp tree1:::p:181:p}}, space :::p, comp tabbedPane1:::p:1120:p, space :p:10:p, comp panel1:::p:349:p}, seq {comp panel4:::p:1400:p, space :0:0:x}}"
+			"$verticalGroup": "par l {seq {comp panel4:::p:47:p, par l {seq {space :p:11:p, par t {seq {comp panel3:::p::p, space s:::p, comp tree1::::0:x}, seq l {space :p:90:p, comp panel1:::p:72:p, space :0:260:x}}, space :p:23:p}, seq l {space s:::p, comp tabbedPane1:::p:396:p, space ::42:x}}}}"
+		} ) {
+			name: "this"
+			"minimumSize": new java.awt.Dimension( 1350, 771 )
+			"title": "Dianindra - Retur"
+			"$sizePolicy": 0
+			"$locationPolicy": 1
+			"background": new java.awt.Color( 223, 223, 241, 255 )
+			auxiliary() {
+				"JavaCodeGenerator.variableModifiers": 1
+				"JavaCodeGenerator.variableAnnotations": "tree1. .add(new DefaultMutableTreeNode(\"Label\"));"
+				"JavaCodeGenerator.postInitCode": " Toolkit tk = Toolkit.getDefaultToolkit(); \n        int xSize = ((int) tk.getScreenSize().getWidth());  \n        int ySize = ((int) tk.getScreenSize().getHeight());\n      contentPane.setSize(xSize,ySize);\n"
+			}
+			add( new FormComponent( "javax.swing.JTree" ) {
+				name: "tree1"
+				"alignmentY": 1.5f
+				"border": new javax.swing.border.EtchedBorder( 0, sfield java.awt.Color lightGray, sfield java.awt.Color lightGray )
+				"background": new java.awt.Color( 219, 219, 246, 255 )
+				auxiliary() {
+					"JavaCodeGenerator.variableModifiers": 1
+					"JavaCodeGenerator.postCreateCode": "DefaultMutableTreeNode master = new DefaultMutableTreeNode(\"Master\");\nDefaultMutableTreeNode a = new DefaultMutableTreeNode(\"Pengguna\");\nDefaultMutableTreeNode b = new DefaultMutableTreeNode(\"Obat\");\nDefaultMutableTreeNode c = new DefaultMutableTreeNode(\"Supplier\");\nmaster.add(a);\nmaster.add(b);\nmaster.add(c);\n\nDefaultMutableTreeNode transaksi = new DefaultMutableTreeNode(\"Transaksi\");\nDefaultMutableTreeNode a1 = new DefaultMutableTreeNode(\"Pembelian\");\nDefaultMutableTreeNode b1 = new DefaultMutableTreeNode(\"Penjualan\");\ntransaksi.add(a1);\ntransaksi.add(b1);\n\n\nDefaultMutableTreeNode laporan = new DefaultMutableTreeNode(\"Laporan\");\nDefaultMutableTreeNode a2 = new DefaultMutableTreeNode(\"Data Obat\");\nDefaultMutableTreeNode b2 = new DefaultMutableTreeNode(\"Pembelian Obat\");\nDefaultMutableTreeNode b3 = new DefaultMutableTreeNode(\"Penjualan Obat\");\nDefaultMutableTreeNode c2 = new DefaultMutableTreeNode(\"Laporan Profit\");\nlaporan.add(a2);\nlaporan.add(b2);\nlaporan.add(b3);\nlaporan.add(c2);\n\nDefaultMutableTreeNode nba = new DefaultMutableTreeNode(\"Sistem Inventori Apotek Dianindra\");\nnba.add(master);\nnba.add(transaksi);\nnba.add(laporan);\ntree1 = new JTree(nba);\n\n"
+				}
+				addEvent( new FormEvent( "javax.swing.event.AncestorListener", "ancestorAdded", "tree1AncestorAdded", true ) )
+				addEvent( new FormEvent( "java.awt.event.KeyListener", "keyPressed", "tree1KeyPressed", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "tree1MouseClicked", true ) )
+				addEvent( new FormEvent( "javax.swing.event.TreeSelectionListener", "valueChanged", "jTree1ValueChanged", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "tabbedPane1"
+				"nextFocusableComponent": new FormReference( "this" )
+				"preferredSize": new java.awt.Dimension( 1936, 98 )
+				"componentOrientation": sfield java.awt.ComponentOrientation LEFT_TO_RIGHT
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {space :::p, par l {seq t {space :0:0:x, comp panel5:::p:1139:p}, seq {par l {comp label1:::p:193:p, comp scrollPane1::l:p:1119:p}, space :0:0:x}}, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp label1:::p::p, space :p:13:p, comp scrollPane1:::p:230:p, space u:::p, comp panel5:::p:41:p, space ::46:x}}"
+				} ) {
+					name: "panel2"
+					"background": new java.awt.Color( 219, 219, 246, 255 )
+					"autoscrolls": true
+					"preferredSize": new java.awt.Dimension( 931, 70 )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": "Welcome. Administrator & Opeartor"
+					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						"verticalScrollBarPolicy": 22
+						"horizontalScrollBarPolicy": 32
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "table1"
+							"autoResizeMode": 4
+							auxiliary() {
+								"JavaCodeGenerator.postCreateCode": " try{\n           Class.forName(\"com.mysql.jdbc.Driver\");\n           con = (Connection) DriverManager.getConnection(\"jdbc:mysql://localhost:3306/dianindra\",\"root\",\"\");\n           cn = (Statement) con.createStatement();\n          ResultSet rs = cn.executeQuery(\"Select retur_pembelian.id_retur, retur_pembelian.id_order, retur_pembelian.jumlah, order_table.id_obat from retur_pembelian join order_table on retur_pembelian.id_order = order_table.id_order where retur_pembelian.status = '0' \");\n    table1.setModel(DbUtils.resultSetToTableModel(rs));\n  }\n           catch(Exception e){\n               System.out.println(\"gagal\");\n           }\n"
+							}
+						} )
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+						name: "panel5"
+						"border": &EtchedBorder0 new javax.swing.border.EtchedBorder( 1, null, null )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "button2"
+							"text": "Print"
+							"icon": &SwingIcon0 new com.jformdesigner.model.SwingIcon( 0, "/dianindra/gambar/print.png" )
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "print", true ) )
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+							"x": 405
+							"y": 5
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "button3"
+							"text": "Kembali"
+							"icon": &SwingIcon1 new com.jformdesigner.model.SwingIcon( 0, "/dianindra/gambar/back.png" )
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "back", true ) )
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+							"x": 490
+							"y": 5
+						} )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Retur Pembelian"
+					"background": sfield java.awt.Color lightGray
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/dianindra/gambar/home.png" )
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+					name: "panel6"
+					"background": new java.awt.Color( 219, 219, 246, 255 )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane2"
+						"verticalScrollBarPolicy": 22
+						"horizontalScrollBarPolicy": 32
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "table2"
+							"autoResizeMode": 4
+							auxiliary() {
+								"JavaCodeGenerator.postCreateCode": " try{\n           Class.forName(\"com.mysql.jdbc.Driver\");\n           con = (Connection) DriverManager.getConnection(\"jdbc:mysql://localhost:3306/dianindra\",\"root\",\"\");\n           cn = (Statement) con.createStatement();\n          ResultSet rs = cn.executeQuery(\"Select * from retur_penjualan\");\n    table2.setModel(DbUtils.resultSetToTableModel(rs));\n  }\n           catch(Exception e){\n               System.out.println(\"gagal\");\n           }\n"
+							}
+						} )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 1104
+						"height": 180
+						"x": 10
+						"y": 115
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": "Welcome. Administrator & Opeartor"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 193
+						"height": 14
+						"x": 15
+						"y": 15
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+						name: "panel7"
+						"border": #EtchedBorder0
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "button4"
+							"text": "Print"
+							"icon": #SwingIcon0
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "returpenjualan", true ) )
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+							"x": 405
+							"y": 5
+						} )
+						add( new FormComponent( "javax.swing.JButton" ) {
+							name: "button5"
+							"text": "Kembali"
+							"icon": #SwingIcon1
+							addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "back", true ) )
+						}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+							"x": 490
+							"y": 5
+						} )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"width": 1124
+						"height": 41
+						"x": 15
+						"y": 315
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label5"
+						"text": "ID Transaksi Pembelian"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 15
+						"y": 40
+						"width": 125
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "idtp"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 180
+						"y": 35
+						"width": 140
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label6"
+						"text": "ID Obat"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 20
+						"y": 70
+						"width": 65
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "id_obat"
+						auxiliary() {
+							"JavaCodeGenerator.variableModifiers": 10
+						}
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 180
+						"y": 68
+						"width": 85
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label7"
+						"text": "Jumlah Barang Yang Rusak"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 370
+						"y": 35
+						"width": 155
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "jml"
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 520
+						"y": 30
+						"width": 160
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button1"
+						"text": "Submit"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "submit", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 370
+						"y": 65
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button10"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/dianindra/gambar/cari.png" )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "getidobt", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+						"x": 270
+						"y": 65
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Retur Penjualan [Barang Rusak]"
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+				"$columnSpecs": "0, 0"
+				"$rowSpecs": "0, 0, 0"
+				"$hGap": 5
+				"$vGap": 5
+				"$alignLeft": true
+				"$alignTop": true
+			} ) {
+				name: "panel1"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+				"$columnSpecs": "0, 0:1.0, 0, 0, 0"
+				"$rowSpecs": "0, 0, 0"
+				"$hGap": 5
+				"$vGap": 5
+				"$alignLeft": true
+				"$alignTop": true
+			} ) {
+				name: "panel3"
+				"border": new javax.swing.border.EtchedBorder( 1, null, null )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "Administrator"
+					"font": new java.awt.Font( "Tahoma", 0, 14 )
+					"foreground": sfield java.awt.Color blue
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 2
+					"gridwidth": 3
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/dianindra/gambar/admin.png" )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridy": 1
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button6"
+					"text": "Edit Profil"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/dianindra/gambar/edit.png" )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+					"gridx": 2
+					"gridy": 1
+					"gridwidth": 2
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+				name: "panel4"
+				"background": new java.awt.Color( 211, 211, 241, 255 )
+				"border": new javax.swing.border.BevelBorder( 1, null, null, null, null )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "about_button"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/dianindra/gambar/about.png" )
+					"toolTipText": "About Sistem"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 30
+					"y": 10
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button7"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/dianindra/gambar/profil.png" )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 85
+					"y": 10
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button8"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/dianindra/gambar/logout.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "logout", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 140
+					"y": 10
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button9"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/dianindra/gambar/back.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "back", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 195
+					"y": 10
+				} )
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu1"
+					"text": "Home"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/dianindra/gambar/home.png" )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem1"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu2"
+					"text": "Menu"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/dianindra/gambar/master.png" )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem2"
+						"text": "Data Barang"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem2ActionPerformed", true ) )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem3"
+						"text": "Pembelian"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem4"
+						"text": "Penjualan"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem5"
+						"text": "Supplier"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem6"
+						"text": "Stock Barang"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu3"
+					"text": "Logout"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/dianindra/gambar/x.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menu3ActionPerformed", true ) )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 1280, 560 )
+			"location": new java.awt.Point( 0, 0 )
+		} )
+	}
+}
